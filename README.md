@@ -34,7 +34,7 @@ Located through homebrew installation. Version number in path may differ.
 [global]
 tds version = 8.0
 
-[CUSTOM-SERVERNAME]				# <- a stored `servername`, name it whatever
+[CUSTOM-SERVERNAME]			# <- a stored `servername`, name it whatever
 host = 192.168.1.23  			# <- your database server
 port = 1433
 tds version = 8.0
@@ -54,8 +54,8 @@ Located through homebrew installation. Version number in path may differ. This f
 # File: /usr/local/Cellar/unixodbc/2.3.4/etc/odbcinst.ini
 [FreeTDS]
 Description = FreeTDS Driver
-Driver = /usr/local/Cellar/freetds/1.00.54/lib/libtdsodbc.so # /usr/local/lib/libtdsodbc.so also works
-Setup = /usr/local/Cellar/freetds/1.00.54/lib/libtdsodbc.so
+Driver = /usr/local/lib/libtdsodbc.so
+Setup = /usr/local/lib/libtdsodbc.so
 UsageCount = 1
 ```
 
@@ -92,6 +92,7 @@ isql FIRST-DSN your-db-user your-db-password -v
 1. Clone this repo:
 ```ruby
 git clone git@github.com:artimys/ruby-ms-sql-boilerplate.git
+git checkout ms-sql-2016
 ```
 
 2. Install gems:
@@ -104,7 +105,7 @@ $ bundle
 ActiveRecord::Base.establish_connection(
 	:adapter => 'sqlserver',
 	:mode => 'dblib',
-	:dsn => 'FIRST-DSN', 					# <- your custom DSN name if different from above
+	:dsn => 'FIRST-DSN', 				# <- your custom DSN name if different from above
 	:host => 'CUSTOM-SERVERNAME', 			# <- sername created from freetds.conf
 	:databae => 'database-name',
 	:username => 'db-user-name',
