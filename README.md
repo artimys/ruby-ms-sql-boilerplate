@@ -1,5 +1,5 @@
 # ruby-ms-sql-boilerplate
-**Tested with Ruby 1.9.2 / MS SQL Server 2012**
+**Tested with Ruby 1.9.3 / MS SQL Server 2012**
 
 ***For compatibility of MS SQL Server 2016, checkout ```ms-sql-2016``` branch.***
 
@@ -25,7 +25,10 @@ Install packages
 brew install unixodbc
 brew install freetds --with-unixodbc
 ```
-**2) FREETDS - located through homebrew installation. Version number in path may differ.**
+**2) FREETDS**
+
+Located through homebrew installation. Version number in path may differ.
+
 ```conf
 # File: /usr/local/Cellar/freetds/1.00.54/etc/freetds.conf
 [global]
@@ -43,8 +46,9 @@ tsql -S CUSTOM-SERVERNAME -U your-db-user -P your-db-password
 ```
 
 
-**3) UNIXODBC - located through homebrew installation. Version number in path may differ.**
-This file specifies the driver (If file doesn't exist, create it):
+**3) UNIXODBC**
+
+Located through homebrew installation. Version number in path may differ. This file specifies the driver (If file doesn't exist, create it):
 
 ```ini
 # File: /usr/local/Cellar/unixodbc/2.3.4/etc/odbcinst.ini
@@ -58,15 +62,15 @@ UsageCount = 1
 This file will contain the DSN (If file doesn't exist, create it):
 ```ini
 # File: /usr/local/Cellar/unixodbc/2.3.4/etc/odbc.ini
-[FIRST-DSN] 										# <- name you DSN to something meaningful
+[FIRST-DSN] 							# <- name you DSN to something meaningful
 Description         = DSN to connect to MS SQLServer
-Driver              = FREETDS 						# <- create from odbcinst.ini
+Driver              = FREETDS 						# <- created from odbcinst.ini
 Trace               = Yes
 TraceFile           = /tmp/sql.log
-Database            = Demo							# <- your database
+Database            = Demo					# <- your database
 Servername          = CUSTOM-SERVERNAME 			# <- servername created from freetds.conf
-UserName            = artimys 						# <- your db user
-Password            = password 						# <- your db password
+UserName            = artimys 					# <- your db user
+Password            = password 					# <- your db password
 Port                = 1433
 Protocol            = 8.0
 ReadOnly            = No
@@ -87,7 +91,7 @@ isql FIRST-DSN your-db-user your-db-password -v
 ## Installation
 1. Clone this repo:
 ```ruby
-git clone kkkk
+git clone git@github.com:artimys/ruby-ms-sql-boilerplate.git
 ```
 
 2. Install gems:
