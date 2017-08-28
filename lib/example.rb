@@ -6,11 +6,13 @@ require 'activerecord-sqlserver-adapter'
 
 
 
-# Connect to Microsoft SQL Server 2012 and early versions
+# Connect to Microsoft SQL Server 2016 and later versions
 ActiveRecord::Base.establish_connection(
 	:adapter => 'sqlserver',
-	:mode => 'odbc',
+	:mode => 'dblib',
 	:dsn => 'your-dsn-name',
+	:host => 'host-created-from-FreeTDS',
+	:databae => 'database-name',
 	:username => 'db-user-name',
 	:password => 'db-user-password'
 )
@@ -21,7 +23,7 @@ ActiveRecord::Base.establish_connection(
 # 		=> last_name
 #
 class User < ActiveRecord::Base
-	self.table_name = "Users"
+	self.table_name = "Demo.dbo.Users"
 	self.primary_key = "ID"
 end
 

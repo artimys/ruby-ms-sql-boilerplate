@@ -1,18 +1,18 @@
 # ruby-ms-sql-boilerplate
-**Tested with Ruby 1.9.3 / MS SQL Server 2012**
+**Tested with Ruby 2.4.1 / MS SQL Server 2016**
 
-***For compatibility of MS SQL Server 2016, checkout ```ms-sql-2016``` branch.***
+***For compatibility of MS SQL Server 2012 and earlier, checkout ```master``` branch.***
 
 This is a super duper bare bones ruby script that establishes a connection to Microsoft SQL Server 2012 and earlier versions. It uses Rails' Activerecord gem to map the database tables into Ruby classes.
 
 All necessary gems can be found in the ```Gemfile``` and should be installed through ```bundler```.  Just a quick look at the required gems and their versions.
 
 ```ruby
-gem 'ruby-odbc', '0.99994'
+gem 'ruby-odbc', '0.99998'
 gem 'tiny_tds', '0.4.5'
-gem 'activerecord', '3.2.13'
-# MSSQL SERVER 2005, 2008, 2010, 2011, 2012 are supported
-gem 'activerecord-sqlserver-adapter', '3.2.10'
+gem 'activerecord', '5.1.3'
+# MSSQL SERVER 2016 and later are supported
+gem 'activerecord-sqlserver-adapter', '5.1.1'
 
 ```
 
@@ -103,8 +103,10 @@ $ bundle
 ```ruby
 ActiveRecord::Base.establish_connection(
 	:adapter => 'sqlserver',
-	:mode => 'odbc',
-	:dsn => 'FIRST-DSN', 				# <- your custom DSN name if different from above
+	:mode => 'dblib',
+	:dsn => 'FIRST-DSN', 					# <- your custom DSN name if different from above
+	:host => 'CUSTOM-SERVERNAME', 			# <- sername created from freetds.conf
+	:databae => 'database-name',
 	:username => 'db-user-name',
 	:password => 'db-user-password'
 )
@@ -112,7 +114,7 @@ ActiveRecord::Base.establish_connection(
 Also modify the small User class snippet to match a class in your database:
 ```ruby
 class User < ActiveRecord::Base
-	self.table_name = "Users"
+	self.table_name = "Demo.dbo.Users" 		# <- required to specify database.dbo.table-name
 	self.primary_key = "ID"
 end
 
