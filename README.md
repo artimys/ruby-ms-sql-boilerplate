@@ -80,7 +80,7 @@ ShowOidColumn       = No
 FakeOidIndex        = No
 ```
 
-**Test DSN Connection**
+Test DSN Connection
 ```shell
 isql FIRST-DSN your-db-user your-db-password -v
 ```
@@ -104,7 +104,7 @@ $ bundle
 ActiveRecord::Base.establish_connection(
 	:adapter => 'sqlserver',
 	:mode => 'odbc',
-	:dsn => 'your-dsn-name',
+	:dsn => 'FIRST-DSN', 				# <- your custom DSN name if different from above
 	:username => 'db-user-name',
 	:password => 'db-user-password'
 )
